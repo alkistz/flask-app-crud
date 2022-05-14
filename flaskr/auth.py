@@ -48,7 +48,7 @@ def login():
         db = get_db()
         error = None
         user = db.execute(
-            'SELECT * FROM user WHERE usrname = ?', (username,)
+            'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
 
         if user is None:
@@ -90,4 +90,5 @@ def login_required(view):
         if g.user is None:
             return redirect((url_for('auth.login')))
         return view(**kwargs)
+
     return wrapped_view
